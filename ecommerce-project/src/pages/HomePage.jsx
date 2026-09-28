@@ -9,13 +9,13 @@ export function HomePage() {
 
     useEffect(
         () => {
-            axios.get("http://localhost:3000/api/products")
+            axios.get("/api/products")
             .then(
                 (res) => {
                     setProducts(res.data)
                 }
             )
-            axios.get('http://localhost:3000/api/cart-items')
+            axios.get('/api/cart-items')
             .then(
                 (res) => {
                     setCart(res.data)
