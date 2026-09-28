@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect , useState } from 'react'
 import { Header } from '../components/Header'
+import { formatMony } from '../utils/mony';
 import './HomePage.css';
 
 export function HomePage( { cart } ) {
@@ -52,7 +53,7 @@ export function HomePage( { cart } ) {
                                         </div>
 
                                         <div className="product-price">
-                                            {product.priceCents / 100}
+                                            {formatMony(product.priceCents)}
                                         </div>
 
                                         <div className="product-quantity-container">
