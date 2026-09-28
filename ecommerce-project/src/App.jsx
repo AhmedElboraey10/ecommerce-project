@@ -1,4 +1,6 @@
-import { Routes , Route } from 'react-router'
+import { Routes, Route } from 'react-router'
+import { useState , useEffect } from 'react'
+import axios from 'axios'
 import { HomePage } from './pages/HomePage'
 import { CheckoutPage } from './pages/checkout/CheckoutPage.jsx'
 import { OrdersPage } from './pages/OrdersPage.jsx'
@@ -7,14 +9,29 @@ import { NotFoundPage } from './pages/NotFoundPage.jsx'
 import './App.css';
 
 function App() {
+
+    const [cart, setCart] = useState([])
+
+    useEffect(
+        () => {
+            axios.get('/api/cart-items')
+                .then(
+                    (res) => {
+                        setCart(res.data)
+                    }
+                )
+        },
+        []
+    )
+
     return (
         <>
             <Routes>
-                <Route index element={ <HomePage /> } />
-                <Route path="checkout" element={ <CheckoutPage /> } />
-                <Route path="orders" element={ <OrdersPage /> } />
-                <Route path="tracking" element={ <TrackingPage /> } />
-                <Route path='*' element={ <NotFoundPage /> }></Route>
+                <Route index element={<HomePage cart={cart} />} />
+                <Route path="checkout" element={<CheckoutPage cart={cart} />} />
+                <Route path="orders" element={<OrdersPage />} />
+                <Route path="tracking" element={<TrackingPage />} />
+                <Route path='*' element={<NotFoundPage />}></Route>
             </Routes>
         </>
     );
