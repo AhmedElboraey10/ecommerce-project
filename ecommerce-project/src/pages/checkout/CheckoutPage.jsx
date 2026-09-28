@@ -5,7 +5,7 @@ export function CheckoutPage() {
     return (
         <>
 
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/images/cart.png" />
 
 
         <title>Checkout</title>
