@@ -9,12 +9,11 @@ export function HomePage( { cart } ) {
 
     useEffect(
         () => {
-            axios.get("/api/products")
-            .then(
-                (res) => {
-                    setProducts(res.data)
-                }
-            )
+            const getHomeDate = async () => {
+                const response = await axios.get("/api/products")
+                setProducts(response.data)
+            }
+            getHomeDate()
         } ,
         []
     )
