@@ -1,45 +1,21 @@
-import { formatMony } from '../../utils/mony';
-import { DeliveryOptions } from './DeliveryOptions'
-import dayjs from 'dayjs';
+import { CartItemDetails } from '../orders/CartItemDetails';
+import { DeliveryDate } from '../orders/DeliveryDate';
+import { DeliveryOptions } from './DeliveryOptions';
 
-export function OrderSummery({ cart , deliveryOptions }) {
+export function OrderSummery({ cart, deliveryOptions }) {
     return (
         <div className="order-summary">
             {
                 cart.map(
                     (cartItem) => {
-                        const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
-                            return deliveryOption.id === cartItem.deliveryOptionId;
-                        });
-
                         return (
                             <div key={cartItem.productId} className="cart-item-container">
-                                <div className="delivery-date">
-                                    Delivery date: {deliveryOptions.length > 0 &&
-                                        dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
-                                </div>
+                                <DeliveryDate
+                                    cartItem={cartItem}
+                                    deliveryOptions={deliveryOptions}
+                                />
                                 <div className="cart-item-details-grid">
-                                    <img className="product-image"
-                                        src={cartItem.product.image} />
-                                    <div className="cart-item-details">
-                                        <div className="product-name">
-                                            {cartItem.product.name}
-                                        </div>
-                                        <div className="product-price">
-                                            {formatMony(cartItem.product.priceCents * cartItem.quantity)}
-                                        </div>
-                                        <div className="product-quantity">
-                                            <span>
-                                                Quantity: <span className="quantity-label">{cartItem.quantity}</span>
-                                            </span>
-                                            <span className="update-quantity-link link-primary">
-                                                Update
-                                            </span>
-                                            <span className="delete-quantity-link link-primary">
-                                                Delete
-                                            </span>
-                                        </div>
-                                    </div>
+                                    <CartItemDetails cartItem={cartItem} />
                                     <DeliveryOptions cartItem={cartItem} />
                                 </div>
                             </div>

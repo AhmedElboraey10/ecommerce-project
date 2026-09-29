@@ -10,12 +10,11 @@ export function OrdersPage({ cart }) {
 
     useEffect(
         () => {
-            axios.get('/api/orders?expand=products')
-                .then(
-                    (res) => {
-                        setOrders(res.data);
-                    }
-                );
+            const fetchOrdersData = async () => {
+                const response = await axios.get('/api/orders?expand=products')
+                setOrders(response.data);
+            }
+            fetchOrdersData()
         },
         []
     );
