@@ -1,7 +1,7 @@
 import { formatMony } from "../../utils/mony";
 import dayjs from "dayjs";
 
-export function deliveryOptions({cartItem}) {
+export function DeliveryOptions({ cartItem, deliveryOptions }) {
     return (
         <div className="delivery-options">
             <div className="delivery-options-title">
@@ -22,8 +22,7 @@ export function deliveryOptions({cartItem}) {
                                 <input type="radio"
                                     className="delivery-option-input"
                                     name={`delivery-option-${cartItem.productId}`}
-                                    checked={deliveryOption.id === cartItem.deliveryOptionId}
-                                    onChange={() => { }} />
+                                    defaultChecked={deliveryOption.id === cartItem.deliveryOptionId} />
                                 <div>
                                     <div className="delivery-option-date">
                                         {dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
