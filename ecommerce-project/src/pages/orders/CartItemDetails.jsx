@@ -1,6 +1,12 @@
+import axios from 'axios';
 import { formatMony } from '../../utils/mony';
 
-export function CartItemDetails({ cartItem }) {
+export function CartItemDetails({ cartItem, loadCart }) {
+    const deleteCartItem = async () => {
+        await axios.delete(`/api/cart-items/${cartItem.productId}`);
+        await loadCart();
+    };
+
     return (
         <>
             <img className="product-image"
@@ -19,7 +25,8 @@ export function CartItemDetails({ cartItem }) {
                     <span className="update-quantity-link link-primary">
                         Update
                     </span>
-                    <span className="delete-quantity-link link-primary">
+                    <span className="delete-quantity-link link-primary"
+                        onClick={deleteCartItem}>
                         Delete
                     </span>
                 </div>
