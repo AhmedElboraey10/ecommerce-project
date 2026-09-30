@@ -1,7 +1,8 @@
+import axios from 'axios';
 import { formatMony } from "../../utils/mony";
 import dayjs from "dayjs";
 
-export function DeliveryOptions({ cartItem, deliveryOptions }) {
+export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
     return (
         <div className="delivery-options">
             <div className="delivery-options-title">
@@ -10,19 +11,29 @@ export function DeliveryOptions({ cartItem, deliveryOptions }) {
             {
                 deliveryOptions.map(
                     (deliveryOption) => {
+                        const updateDeliveryOption = async () => {
+                            await axios.put(`/api/cart-items/${cartItem.productId}`, {
+                                deliveryOptionId: deliveryOption.id
+                            });
+                            await loadCart();
+                        };
+
                         let priceString = 'FREE Shipping';
                         if (deliveryOption.priceCents > 0) {
                             priceString = `${formatMony(deliveryOption.priceCents)} - Shipping`;
                         }
+
                         return (
                             <div
                                 className="delivery-option"
                                 key={deliveryOption.id}
+                                onClick={updateDeliveryOption}
                             >
                                 <input type="radio"
                                     className="delivery-option-input"
                                     name={`delivery-option-${cartItem.productId}`}
-                                    defaultChecked={deliveryOption.id === cartItem.deliveryOptionId} />
+                                    checked={deliveryOption.id === cartItem.deliveryOptionId}
+                                    onChange={() => {}} />
                                 <div>
                                     <div className="delivery-option-date">
                                         {dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
