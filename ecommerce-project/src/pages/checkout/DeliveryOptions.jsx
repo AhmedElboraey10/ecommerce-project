@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formatMony } from "../../utils/mony";
+import { formatMoney } from "../../utils/money";
 import dayjs from "dayjs";
 
 export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
@@ -20,7 +20,7 @@ export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
 
                         let priceString = 'FREE Shipping';
                         if (deliveryOption.priceCents > 0) {
-                            priceString = `${formatMony(deliveryOption.priceCents)} - Shipping`;
+                            priceString = `${formatMoney(deliveryOption.priceCents)} - Shipping`;
                         }
 
                         return (

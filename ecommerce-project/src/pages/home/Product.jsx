@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { formatMony } from "../../utils/mony";
+import { formatMoney } from "../../utils/money";
 
 export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
@@ -35,7 +35,7 @@ export function Product({ product, loadCart }) {
                 </div>
             </div>
             <div className="product-price">
-                {formatMony(product.priceCents)}
+                {formatMoney(product.priceCents)}
             </div>
             <div className="product-quantity-container">
                 <select

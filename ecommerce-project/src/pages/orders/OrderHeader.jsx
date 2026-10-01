@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { formatMony } from '../../utils/mony';
+import { formatMoney } from '../../utils/money';
 
 export function OrderHeader({ order }) {
     return (
@@ -11,7 +11,7 @@ export function OrderHeader({ order }) {
                 </div>
                 <div className="order-total">
                     <div className="order-header-label">Total:</div>
-                    <div>{formatMony(order.totalCostCents)}</div>
+                    <div>{formatMoney(order.totalCostCents)}</div>
                 </div>
             </div>
             <div className="order-header-right-section">
