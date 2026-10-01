@@ -2,19 +2,22 @@ import axios from 'axios';
 import { useState } from 'react';
 import { formatMony } from "../../utils/mony";
 
-export function Product({ product , loadCart }) {
+export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
+    const [isAdded, setIsAdded] = useState(false);
+
     const addToCart = async () => {
         await axios.post('/api/cart-items', {
             productId: product.id,
-            quantity
+            quantity: quantity
         });
         await loadCart();
-    }
-    const selectQuantity = (event) => {
-        const quantitySelected = Number(event.target.value);
-        setQuantity(quantitySelected);
-    }
+        setIsAdded(true);
+        setTimeout(() => {
+            setIsAdded(false);
+        }, 2000);
+    };
+
     return (
         <div className="product-container">
             <div className="product-image-container">
@@ -37,7 +40,10 @@ export function Product({ product , loadCart }) {
             <div className="product-quantity-container">
                 <select
                     value={quantity}
-                    onChange={selectQuantity}
+                    onChange={(event) => {
+                        const quantitySelected = Number(event.target.value);
+                        setQuantity(quantitySelected);
+                    }}
                 >
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -52,13 +58,13 @@ export function Product({ product , loadCart }) {
                 </select>
             </div>
             <div className="product-spacer"></div>
-            <div className="added-to-cart">
+            <div className="added-to-cart"
+                style={{ opacity: isAdded ? 1 : 0 }}>
                 <img src="images/icons/checkmark.png" />
                 Added
             </div>
             <button className="add-to-cart-button button-primary"
-                onClick={addToCart}
-            >
+                onClick={addToCart}>
                 Add to Cart
             </button>
         </div>

@@ -213,3 +213,7 @@
     margin-top: 20px;
     margin-bottom: 19px;
 }
+
+.checkout-page .quantity-input {
+    width: 50px;
+}
