@@ -32,7 +32,7 @@ export function Product({ product, loadCart }) {
             <div className="product-rating-container">
                 <img className="product-rating-stars"
                     src={`images/ratings/rating-${product.rating.stars * 10}.png`}
-                    data-testid ="product-rating-stars-image" />
+                    data-testid="product-rating-stars-image" />
                 <div className="product-rating-count link-primary">
                     {(product.rating.count).toFixed(2)}
                 </div>
@@ -42,6 +42,7 @@ export function Product({ product, loadCart }) {
             </div>
             <div className="product-quantity-container">
                 <select
+                    data-testid="quantity-selector"
                     value={quantity}
                     onChange={(event) => {
                         const quantitySelected = Number(event.target.value);

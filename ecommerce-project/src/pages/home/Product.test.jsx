@@ -9,9 +9,9 @@ vi.mock('axios')
 describe(
     'Product component',
     () => {
-
         let product
         let loadCart
+        let user
 
         beforeEach(
             () => {
@@ -27,6 +27,7 @@ describe(
                     keywords: ["socks", "sports", "apparel"]
                 }
                 loadCart = vi.fn()
+                user = userEvent.setup()
             }
         )
 
@@ -34,18 +35,23 @@ describe(
             'displys the product details correctly',
             () => {
                 render(<Product product={product} loadCart={loadCart} />)
+
                 expect(
                     screen.getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')
                 ).toBeInTheDocument()
+
                 expect(
                     screen.getByText('$10.90')
                 ).toBeInTheDocument()
+
                 expect(
                     screen.getByTestId('product-image')
                 ).toHaveAttribute('src', 'images/products/athletic-cotton-socks-6-pairs.jpg')
+
                 expect(
                     screen.getByTestId('product-rating-stars-image')
                 ).toHaveAttribute('src', 'images/ratings/rating-45.png')
+
                 expect(
                     screen.getByText('87.00')
                 ).toBeInTheDocument();
@@ -57,8 +63,8 @@ describe(
             async () => {
                 render(<Product product={product} loadCart={loadCart} />)
 
-                const user = userEvent.setup()
                 const addToCartButton = screen.getByTestId('add-to-cart-button')
+
                 await user.click(addToCartButton)
 
                 expect(axios.post).toHaveBeenCalledWith(
@@ -66,6 +72,34 @@ describe(
                     {
                         productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
                         quantity: 1
+                    }
+                )
+                expect(loadCart).toHaveBeenCalled();
+            }
+        )
+
+        it(
+            'can select a quantity and add it to the cart',
+            async () => {
+                render(<Product product={product} loadCart={loadCart} />)
+
+                const quantitySelector = screen.getByTestId('quantity-selector')
+
+                expect(quantitySelector).toHaveValue('1')
+
+                await user.selectOptions(quantitySelector, '3')
+
+                expect(quantitySelector).toHaveValue('3')
+
+                const addToCartButton = screen.getByTestId('add-to-cart-button')
+
+                await user.click(addToCartButton)
+
+                expect(axios.post).toHaveBeenCalledWith(
+                    '/api/cart-items',
+                    {
+                        productId: product.id,
+                        quantity: 3
                     }
                 )
                 expect(loadCart).toHaveBeenCalled();
