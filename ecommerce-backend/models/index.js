@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize';
+import pg from 'pg';
 import sqlJsAsSqlite3 from 'sql.js-as-sqlite3';
 import fs from 'fs';
 import 'dotenv/config';
@@ -17,6 +18,7 @@ export let sequelize;
 if (databaseUrl) {
   sequelize = new Sequelize(databaseUrl, {
     dialect: 'postgres',
+    dialectModule: pg,
     dialectOptions: {
       ssl: {
         require: true,
