@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from "../../utils/money";
+import { imageUrl } from '../../utils/imageUrl';
 
 export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
@@ -24,7 +25,7 @@ export function Product({ product, loadCart }) {
             <div className="product-image-container">
                 <img className="product-image"
                     data-testid="product-image"
-                    src={product.image} />
+                    src={imageUrl(product.image)} />
             </div>
             <div className="product-name limit-text-to-2-lines">
                 {product.name}

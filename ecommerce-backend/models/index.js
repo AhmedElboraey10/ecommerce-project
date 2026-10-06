@@ -1,7 +1,9 @@
 import { Sequelize } from 'sequelize';
 import sqlJsAsSqlite3 from 'sql.js-as-sqlite3';
 import fs from 'fs';
+import 'dotenv/config';
 
+const databaseUrl = process.env.DATABASE_URL_POOLED || process.env.DATABASE_URL;
 const isUsingRDS = process.env.RDS_HOSTNAME && process.env.RDS_USERNAME && process.env.RDS_PASSWORD;
 const dbType = process.env.DB_TYPE || 'mysql';
 const defaultPorts = {
@@ -12,7 +14,24 @@ const defaultPort = defaultPorts[dbType];
 
 export let sequelize;
 
-if (isUsingRDS) {
+if (databaseUrl) {
+  sequelize = new Sequelize(databaseUrl, {
+    dialect: 'postgres',
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    },
+    logging: false,
+    pool: {
+      max: 2,
+      min: 0,
+      idle: 10000,
+      acquire: 30000
+    }
+  });
+} else if (isUsingRDS) {
   sequelize = new Sequelize({
     database: process.env.RDS_DB_NAME,
     username: process.env.RDS_USERNAME,

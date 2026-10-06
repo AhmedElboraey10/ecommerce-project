@@ -24,9 +24,23 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+if (process.env.NODE_ENV === 'production' && sequelize.getDialect() === 'sqlite') {
+  throw new Error('Set DATABASE_URL to a persistent PostgreSQL database in production.');
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use('/api', (req, res, next) => {
+  const sessionId = req.get('X-Demo-Session');
+  if (!sessionId || !/^[a-zA-Z0-9-]{16,128}$/.test(sessionId)) {
+    return res.status(400).json({ error: 'A valid demo session is required' });
+  }
+
+  req.demoSessionId = sessionId;
+  next();
+});
 
 // Serve images from the images folder
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -36,7 +50,9 @@ app.use('/api/products', productRoutes);
 app.use('/api/delivery-options', deliveryOptionRoutes);
 app.use('/api/cart-items', cartItemRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/reset', resetRoutes);
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/api/reset', resetRoutes);
+}
 app.use('/api/payment-summary', paymentSummaryRoutes);
 
 // Serve static files from the dist folder
@@ -63,6 +79,27 @@ app.use((err, req, res, next) => {
 // Sync database and load default data if none exist
 await sequelize.sync();
 
+for (const model of [CartItem, Order]) {
+  const queryInterface = sequelize.getQueryInterface();
+  const tableName = model.getTableName();
+  const columns = await queryInterface.describeTable(tableName);
+
+  if (!columns.sessionId) {
+    try {
+      await queryInterface.addColumn(tableName, 'sessionId', {
+        type: model.rawAttributes.sessionId.type,
+        allowNull: true
+      });
+    } catch (error) {
+      const message = String(error.message).toLowerCase();
+      const duplicateColumn = error.original?.code === '42701'
+        || message.includes('duplicate column')
+        || message.includes('already exists');
+      if (!duplicateColumn) throw error;
+    }
+  }
+}
+
 const productCount = await Product.count();
 if (productCount === 0) {
   const timestamp = Date.now();
@@ -81,12 +118,14 @@ if (productCount === 0) {
 
   const cartItemsWithTimestamps = defaultCart.map((item, index) => ({
     ...item,
+    sessionId: 'seeded-visitor-session',
     createdAt: new Date(timestamp + index),
     updatedAt: new Date(timestamp + index)
   }));
 
   const ordersWithTimestamps = defaultOrders.map((order, index) => ({
     ...order,
+    sessionId: 'seeded-visitor-session',
     createdAt: new Date(timestamp + index),
     updatedAt: new Date(timestamp + index)
   }));

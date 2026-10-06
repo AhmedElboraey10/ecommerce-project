@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { Header } from '../components/Header';
 import './Tracking.css'
+import { imageUrl } from '../utils/imageUrl';
 
 export function TrackingPage({ cart }) {
     const { orderId, productId } = useParams();
@@ -76,7 +77,7 @@ export function TrackingPage({ cart }) {
                         Quantity: {orderProduct.quantity}
                     </div>
 
-                    <img className="product-image" src={orderProduct.product.image} />
+                    <img className="product-image" src={imageUrl(orderProduct.product.image)} />
 
                     <div className="progress-labels-container">
                         <div className={`progress-label ${isPreparing ? 'current-status' : ''}`}>

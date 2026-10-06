@@ -30,12 +30,14 @@ router.post('/', async (req, res) => {
 
   const cartItemsWithTimestamps = defaultCart.map((item, index) => ({
     ...item,
+    sessionId: 'seeded-visitor-session',
     createdAt: new Date(timestamp + index),
     updatedAt: new Date(timestamp + index)
   }));
 
   const ordersWithTimestamps = defaultOrders.map((order, index) => ({
     ...order,
+    sessionId: 'seeded-visitor-session',
     createdAt: new Date(timestamp + index),
     updatedAt: new Date(timestamp + index)
   }));

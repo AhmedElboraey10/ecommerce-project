@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from '../../utils/money';
+import { imageUrl } from '../../utils/imageUrl';
 
 export function CartItemDetails({ cartItem, loadCart }) {
     const [isUpdating, setIsUpdating] = useState(false);
@@ -35,7 +36,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
     return (
         <>
             <img className="product-image"
-                src={cartItem.product.image} />
+                src={imageUrl(cartItem.product.image)} />
             <div className="cart-item-details">
                 <div className="product-name">
                     {cartItem.product.name}
