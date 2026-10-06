@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { Header } from '../components/Header';
-import './Tracking.css'
+import './tracking.css'
 import { imageUrl } from '../utils/imageUrl';
 
 export function TrackingPage({ cart }) {
