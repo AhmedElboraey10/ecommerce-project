@@ -3,6 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { Link } from 'react-router';
 import { imageUrl } from '../../utils/imageUrl';
+import buyAgainIcon from '../../assets/images/icons/buy-again.png';
 
 export function OrderDetailsGrid({ order, loadCart }) {
     return (
@@ -21,7 +22,7 @@ export function OrderDetailsGrid({ order, loadCart }) {
                         return (
                             <Fragment key={orderProduct.productId}>
                                 <div className="product-image-container">
-                                    <img src={imageUrl(orderProduct.product.image)} />
+                                    <img src={imageUrl(orderProduct.product.image)} alt={orderProduct.product.name} />
                                 </div>
                                 <div className="product-details">
                                     <div className="product-name">
@@ -35,7 +36,7 @@ export function OrderDetailsGrid({ order, loadCart }) {
                                     </div>
                                     <button className="buy-again-button button-primary"
                                         onClick={addToCart}>
-                                        <img className="buy-again-icon" src="images/icons/buy-again.png" />
+                                        <img className="buy-again-icon" src={buyAgainIcon} alt="" />
                                         <span className="buy-again-message">Add to Cart</span>
                                     </button>
                                 </div>

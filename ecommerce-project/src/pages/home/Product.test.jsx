@@ -50,11 +50,15 @@ describe(
 
                 expect(
                     screen.getByTestId('product-rating-stars-image')
-                ).toHaveAttribute('src', 'images/ratings/rating-45.png')
+                ).toHaveAttribute('src', '/images/ratings/rating-45.png')
 
                 expect(
-                    screen.getByText('87.00')
+                    screen.getByText('87')
                 ).toBeInTheDocument();
+
+                expect(
+                    screen.getByTestId('added-checkmark-image')
+                ).toHaveAttribute('src', expect.stringContaining('checkmark.png'))
             }
         )
 

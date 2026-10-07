@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { formatMoney } from "../../utils/money";
 import { imageUrl } from '../../utils/imageUrl';
+import checkmarkIcon from '../../assets/images/icons/checkmark.png';
 
 export function Product({ product, loadCart }) {
     const [quantity, setQuantity] = useState(1);
@@ -32,10 +33,10 @@ export function Product({ product, loadCart }) {
             </div>
             <div className="product-rating-container">
                 <img className="product-rating-stars"
-                    src={`images/ratings/rating-${product.rating.stars * 10}.png`}
+                    src={imageUrl(`images/ratings/rating-${product.rating.stars * 10}.png`)}
                     data-testid="product-rating-stars-image" />
                 <div className="product-rating-count link-primary">
-                    {(product.rating.count).toFixed(2)}
+                    {product.rating.count}
                 </div>
             </div>
             <div className="product-price">
@@ -65,7 +66,7 @@ export function Product({ product, loadCart }) {
             <div className="product-spacer"></div>
             <div className="added-to-cart"
                 style={{ opacity: isAdded ? 1 : 0 }}>
-                <img src="images/icons/checkmark.png" />
+                <img src={checkmarkIcon} data-testid="added-checkmark-image" />
                 Added
             </div>
             <button className="add-to-cart-button button-primary"
