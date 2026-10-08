@@ -33,17 +33,6 @@ export const defaultProducts = [
     "keywords": ["tshirts", "apparel", "mens"]
   },
   {
-    "id": "54e0eccd-8f36-462b-b68a-8182611d9add",
-    "image": "images/products/2-slot-toaster-white.jpg",
-    "name": "2 Slot Toaster - White",
-    "rating": {
-      "stars": 5,
-      "count": 2197
-    },
-    "priceCents": 1899,
-    "keywords": ["toaster", "kitchen", "appliances"]
-  },
-  {
     "id": "3ebe75dc-64d2-4137-8860-1f5a963e534b",
     "image": "images/products/elegant-white-dinner-plate-set.jpg",
     "name": "2 Piece White Dinner Plate Set",
@@ -66,17 +55,6 @@ export const defaultProducts = [
     "keywords": ["kitchen", "cookware"]
   },
   {
-    "id": "dd82ca78-a18b-4e2a-9250-31e67412f98d",
-    "image": "images/products/women-plain-cotton-oversized-sweater-gray.jpg",
-    "name": "Cotton Oversized Sweater - Gray",
-    "rating": {
-      "stars": 4.5,
-      "count": 317
-    },
-    "priceCents": 2400,
-    "keywords": ["sweaters", "apparel"]
-  },
-  {
     "id": "77919bbe-0e56-475b-adde-4f24dfed3a04",
     "image": "images/products/luxury-towel-set.jpg",
     "name": "2 Piece Luxury Towel Set - White",
@@ -97,17 +75,6 @@ export const defaultProducts = [
     },
     "priceCents": 2374,
     "keywords": ["kleenex", "tissues", "kitchen", "napkins"]
-  },
-  {
-    "id": "5968897c-4d27-4872-89f6-5bcb052746d7",
-    "image": "images/products/women-striped-beach-dress.jpg",
-    "name": "Women's Striped Beach Dress",
-    "rating": {
-      "stars": 4.5,
-      "count": 235
-    },
-    "priceCents": 2970,
-    "keywords": ["robe", "swimsuit", "swimming", "bathing", "apparel"]
   },
   {
     "id": "b86ddc8b-3501-4b17-9889-a3bad6fb585f",
@@ -341,17 +308,6 @@ export const defaultProducts = [
     "keywords": ["bathroom", "washroom", "mirrors", "home"]
   },
   {
-    "id": "a45cfa0a-66d6-4dc7-9475-e2b01595f7d7",
-    "image": "images/products/women-relaxed-lounge-pants-pink.jpg",
-    "name": "Women's Relaxed Lounge Pants - Pink",
-    "rating": {
-      "stars": 4.5,
-      "count": 248
-    },
-    "priceCents": 3400,
-    "keywords": ["pants", "apparel", "womens"]
-  },
-  {
     "id": "d339adf3-e004-4c20-a120-40e8874c66cb",
     "image": "images/products/crystal-zirconia-stud-earrings-pink.jpg",
     "name": "Crystal Zirconia Stud Earrings - Pink",
@@ -416,17 +372,6 @@ export const defaultProducts = [
     },
     "priceCents": 3390,
     "keywords": ["shoes", "running shoes", "footwear"]
-  },
-  {
-    "id": "77a845b1-16ed-4eac-bdf9-5b591882113d",
-    "image": "images/products/countertop-push-blender-black.jpg",
-    "name": "Countertop Push Blender - Black",
-    "rating": {
-      "stars": 4,
-      "count": 3
-    },
-    "priceCents": 10747,
-    "keywords": ["food blenders", "kitchen", "appliances"]
   },
   {
     "id": "bc2847e9-5323-403f-b7cf-57fde044a955",
