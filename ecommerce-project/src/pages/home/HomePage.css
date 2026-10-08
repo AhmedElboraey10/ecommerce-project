@@ -109,23 +109,7 @@
 .home-page .product-rating-stars {
   width: 100px;
   margin-right: 6px;
-  display: flex;
-  align-items: center;
-}
-
-.home-page .rating-star {
-  flex: 1;
-  font-size: 20px;
-  line-height: 1;
-  text-align: center;
-  background: linear-gradient(
-    90deg,
-    var(--color-accent) var(--star-fill),
-    rgb(210, 210, 210) var(--star-fill)
-  );
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  filter: hue-rotate(242deg) saturate(1.6);
 }
 
 .home-page .product-rating-count {
@@ -164,6 +148,7 @@
 .home-page .added-to-cart img {
   height: 19px;
   margin-right: 6px;
+  filter: hue-rotate(242deg) saturate(1.6);
 }
 
 .home-page .add-to-cart-button {

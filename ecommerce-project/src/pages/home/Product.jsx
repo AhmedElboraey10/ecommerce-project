@@ -32,27 +32,9 @@ export function Product({ product, loadCart }) {
                 {product.name}
             </div>
             <div className="product-rating-container">
-                <div
-                    className="product-rating-stars"
-                    role="img"
-                    aria-label={`${product.rating.stars} out of 5 stars`}
-                    data-testid="product-rating-stars"
-                >
-                    {Array.from({ length: 5 }, (_, index) => {
-                        const fill = Math.max(0, Math.min(1, product.rating.stars - index));
-
-                        return (
-                            <span
-                                className="rating-star"
-                                key={index}
-                                style={{ '--star-fill': `${fill * 100}%` }}
-                                aria-hidden="true"
-                            >
-                                ★
-                            </span>
-                        );
-                    })}
-                </div>
+                <img className="product-rating-stars"
+                    src={imageUrl(`images/ratings/rating-${product.rating.stars * 10}.png`)}
+                    data-testid="product-rating-stars-image" />
                 <div className="product-rating-count link-primary">
                     {product.rating.count}
                 </div>
