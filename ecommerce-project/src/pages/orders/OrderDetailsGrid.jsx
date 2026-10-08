@@ -9,9 +9,11 @@ export function OrderDetailsGrid({ order, loadCart }) {
     return (
         <div className="order-details-grid">
             {
-                order.products.map(
+                (order.products ?? []).map(
                     (orderProduct) => {
+                        const product = orderProduct.product;
                         const addToCart = async () => {
+                            if (!product) return;
                             await axios.post('/api/cart-items', {
                                 productId: orderProduct.productId,
                                 quantity: 1
@@ -22,11 +24,11 @@ export function OrderDetailsGrid({ order, loadCart }) {
                         return (
                             <Fragment key={orderProduct.productId}>
                                 <div className="product-image-container">
-                                    <img src={imageUrl(orderProduct.product.image)} alt={orderProduct.product.name} />
+                                    {product && <img src={imageUrl(product.image)} alt={product.name} />}
                                 </div>
                                 <div className="product-details">
                                     <div className="product-name">
-                                        {orderProduct.product.name}
+                                        {product?.name ?? 'This product is no longer available'}
                                     </div>
                                     <div className="product-delivery-date">
                                         Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format('MMMM D')}
@@ -34,19 +36,19 @@ export function OrderDetailsGrid({ order, loadCart }) {
                                     <div className="product-quantity">
                                         Quantity: {orderProduct.quantity}
                                     </div>
-                                    <button className="buy-again-button button-primary"
-                                        onClick={addToCart}>
-                                        <img className="buy-again-icon" src={buyAgainIcon} alt="" />
-                                        <span className="buy-again-message">Add to Cart</span>
-                                    </button>
+                                    {product && (
+                                        <button className="buy-again-button button-primary"
+                                            onClick={addToCart}>
+                                            <img className="buy-again-icon" src={buyAgainIcon} alt="" />
+                                            <span className="buy-again-message">Add to Cart</span>
+                                        </button>
+                                    )}
                                 </div>
                                 <div className="product-actions">
                                     <Link
                                         className="track-package-button button-secondary"
                                         to={`/tracking/${order.id}/${orderProduct.productId}`}
-                                    >
-                                        Track package
-                                    </Link>
+                                    >Track package</Link>
                                 </div>
                             </Fragment>
                         );

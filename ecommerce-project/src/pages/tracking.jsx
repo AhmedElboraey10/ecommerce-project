@@ -39,6 +39,22 @@ export function TrackingPage({ cart }) {
         return null;
     }
 
+    if (!orderProduct.product) {
+        return (
+            <>
+                <Header cart={cart} />
+                <div className="tracking-page">
+                    <div className="order-tracking">
+                        <Link className="back-to-orders-link link-primary" to="/orders">
+                            View all orders
+                        </Link>
+                        <div className="product-info">This product is no longer available.</div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
     const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
     const timePassedMs = dayjs().valueOf() - order.orderTimeMs;
     const deliveryPercent = Math.min(

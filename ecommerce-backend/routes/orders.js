@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         const productDetails = await Product.findByPk(product.productId);
         return {
           ...product,
-          product: productDetails
+          product: productDetails?.toJSON() ?? null
         };
       }));
       return {
@@ -88,7 +88,7 @@ router.get('/:orderId', async (req, res) => {
       const productDetails = await Product.findByPk(product.productId);
       return {
         ...product,
-        product: productDetails
+        product: productDetails?.toJSON() ?? null
       };
     }));
     order = {

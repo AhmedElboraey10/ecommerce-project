@@ -12,11 +12,16 @@ router.get('/', async (req, res) => {
   if (expand === 'product') {
     cartItems = await Promise.all(cartItems.map(async (item) => {
       const product = await Product.findByPk(item.productId);
+      if (!product) {
+        await item.destroy();
+        return null;
+      }
       return {
         ...item.toJSON(),
         product
       };
     }));
+    cartItems = cartItems.filter(Boolean);
   }
 
   res.json(cartItems);
