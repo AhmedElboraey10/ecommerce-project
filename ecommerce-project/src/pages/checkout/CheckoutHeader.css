@@ -26,13 +26,11 @@
     width: 200px;
 }
 
-.checkout-header .logo {
-    height: 26px;
-    margin-top: 0px;
-}
-
-.checkout-header .mobile-logo {
-    display: none;
+.checkout-header .checkout-brand-name {
+    color: var(--color-header);
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 /* @media is used to create responsive design (making the
@@ -40,17 +38,18 @@
    means when the screen width is 575px or less, different
    styles (inside the {...}) will be applied. */
 @media (max-width: 575px) {
+    .checkout-header {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     .checkout-header .checkout-header-left-section {
         width: auto;
+        flex-shrink: 0;
     }
 
-    .checkout-header .logo {
-        display: none;
-    }
-
-    .checkout-header .mobile-logo {
-        display: inline-block;
-        height: 26px;
+    .checkout-header .checkout-brand-name {
+        font-size: 17px;
     }
 }
 
@@ -67,7 +66,7 @@
 }
 
 .checkout-header .return-to-home-link {
-    color: rgb(25, 135, 84);
+    color: var(--color-accent-text);
 
     text-decoration: none;
     cursor: pointer;
@@ -87,6 +86,22 @@
 @media (max-width: 575px) {
     .checkout-header .checkout-header-middle-section {
         margin-right: 5px;
+        flex-shrink: 1;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    .checkout-header .checkout-brand-name {
+        font-size: 14px;
+    }
+
+    .checkout-header .checkout-header-middle-section {
+        font-size: 16px;
+    }
+
+    .checkout-header .checkout-header-right-section img {
+        height: 26px;
     }
 }
 

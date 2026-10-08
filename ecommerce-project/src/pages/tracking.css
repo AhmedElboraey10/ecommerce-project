@@ -44,7 +44,7 @@
 }
 
 .tracking-page .current-status {
-    color: rgb(25, 135, 84);
+    color: var(--color-accent-text);
 }
 
 @media (max-width: 575px) {
@@ -75,7 +75,7 @@
 
 .tracking-page .progress-bar {
     height: 100%;
-    background-color: rgb(25, 135, 84);
+    background-color: var(--color-accent);
     border-radius: 50px;
     width: 50%;
 }

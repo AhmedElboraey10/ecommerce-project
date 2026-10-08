@@ -1,5 +1,5 @@
 .header {
-    background-color: rgb(8, 79, 45);
+    background-color: var(--color-header);
     color: white;
     padding-left: 15px;
     padding-right: 15px;
@@ -38,24 +38,64 @@
     border: 1px solid white;
 }
 
-.header .logo {
-    height: 26px;
-    margin-top: 1px;
-}
-
-.header .mobile-logo {
-    display: none;
+.header .brand-name {
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 @media (max-width: 675px) {
-    .header .logo {
-        display: none;
+    .header .brand-name {
+        font-size: 16px;
     }
 
-    .header .mobile-logo {
-        display: block;
-        height: 26px;
-        margin-top: 1px;
+    .header .right-section {
+        width: auto;
+    }
+
+    .header .header-link {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .header .cart-icon {
+        width: 32px;
+    }
+
+    .header .cart-quantity {
+        right: 39px;
+    }
+}
+
+@media (max-width: 450px) {
+    .header .brand-name {
+        font-size: 14px;
+    }
+
+    .header .orders-link,
+    .header .cart-link {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .header .cart-icon {
+        width: 28px;
+    }
+
+    .header .cart-quantity {
+        right: 35px;
+        width: 20px;
+    }
+
+    .header .cart-text {
+        margin-left: 2px;
+        font-size: 13px;
+    }
+
+    .header .middle-section {
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 
@@ -81,7 +121,7 @@
 }
 
 .header .search-button {
-    background-color: rgb(186, 255, 190);
+    background-color: var(--color-accent-light);
     border: none;
     width: 45px;
     height: 40px;
@@ -140,7 +180,7 @@
 }
 
 .header .cart-quantity {
-    color: rgb(8, 79, 45);
+    color: var(--color-header);
     font-size: 14px;
     font-weight: 700;
 

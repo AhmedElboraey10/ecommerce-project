@@ -109,10 +109,11 @@
 .home-page .product-rating-stars {
   width: 100px;
   margin-right: 6px;
+  filter: hue-rotate(242deg) saturate(1.6);
 }
 
 .home-page .product-rating-count {
-  color: rgb(25, 135, 84);
+  color: var(--color-accent-text);
   cursor: auto;
   margin-top: 3px;
 }
@@ -131,7 +132,7 @@
 }
 
 .home-page .added-to-cart {
-  color: rgb(25, 135, 84);
+  color: var(--color-accent-text);
   font-size: 16px;
 
   display: flex;
@@ -147,6 +148,7 @@
 .home-page .added-to-cart img {
   height: 19px;
   margin-right: 6px;
+  filter: hue-rotate(242deg) saturate(1.6);
 }
 
 .home-page .add-to-cart-button {

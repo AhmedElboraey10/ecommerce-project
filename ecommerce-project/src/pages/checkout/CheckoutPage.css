@@ -73,7 +73,7 @@
 }
 
 .checkout-page .delivery-date {
-    color: rgb(25, 135, 84);
+    color: var(--color-accent-text);
     font-weight: 700;
     font-size: 19px;
     margin-top: 5px;
@@ -153,6 +153,7 @@
 .checkout-page .delivery-option-input {
     margin: 3px 5px 0px 0px;
     cursor: pointer;
+    accent-color: var(--color-accent-hover);
 }
 
 .checkout-page .delivery-option-date {
@@ -196,7 +197,7 @@
 }
 
 .checkout-page .total-row {
-    color: rgb(25, 135, 84);
+    color: var(--color-accent-text);
     font-weight: 700;
     font-size: 18px;
 
