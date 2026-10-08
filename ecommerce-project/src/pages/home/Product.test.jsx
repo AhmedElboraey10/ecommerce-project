@@ -49,8 +49,8 @@ describe(
                 ).toHaveAttribute('src', '/images/products/athletic-cotton-socks-6-pairs.jpg')
 
                 expect(
-                    screen.getByTestId('product-rating-stars-image')
-                ).toHaveAttribute('src', '/images/ratings/rating-45.png')
+                    screen.getByTestId('product-rating-stars')
+                ).toHaveAttribute('aria-label', '4.5 out of 5 stars')
 
                 expect(
                     screen.getByText('87')
